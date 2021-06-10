@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
     docker-php-ext-install pcntl \
         bcmath \
         mysqli \
+        pdo \
         pdo_mysql \
         pdo_pgsql \
         pgsql \
