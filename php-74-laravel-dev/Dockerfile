@@ -15,12 +15,14 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
         libgmp-dev \
         libpng-dev \
         git \
+        telnet \
         nodejs \
         zip \
-        nano \
-        unzip && \
+        unzip \
+        nano && \
     docker-php-ext-install pcntl \
         bcmath \
+        mysqli \
         pdo_mysql \
         pdo_pgsql \
         pgsql \
@@ -28,7 +30,7 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
         gd \
         gmp && \
     pecl install xdebug-3.0.4 && \
-    docker-php-ext-enable xdebug
+    docker-php-ext-enable xdebug gd
 
 COPY --from=composer:2.1.2 /usr/bin/composer /usr/bin/composer
 
