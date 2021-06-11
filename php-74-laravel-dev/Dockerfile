@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 
-LABEL description="Docker image for laravel development with php 7.4, xdebug, composer, and needed php ext."
+LABEL description="Docker image for laravel development with php 7.4-fpm."
 LABEL maintainer="moath.alhajrii@gmail.com"
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
