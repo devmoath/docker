@@ -3,7 +3,7 @@ FROM php:8-fpm
 LABEL description="Docker image for laravel development with php 8-fpm."
 LABEL maintainer="moath.alhajrii@gmail.com"
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash -
 
 RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
         openssl \
