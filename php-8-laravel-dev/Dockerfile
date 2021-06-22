@@ -33,11 +33,34 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
     pecl install xdebug-3.0.4 && \
     docker-php-ext-enable xdebug gd
 
-COPY --from=composer:2.1.2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.3 /usr/bin/composer /usr/bin/composer
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
+RUN printf "# composer php cli ini settings\n\
+date.timezone=UTC\n\
+memory_limit=-1\n\
+" > $PHP_INI_DIR/php-cli.ini
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
-ENV COMPOSER_VERSION 2.1.2
+ENV COMPOSER_VERSION 2.1.3
 ENV XDEBUG_MODE coverage
+
+RUN curl \
+        --silent \
+        --fail \
+        --location \
+        --retry 3 \
+        --output /tmp/keys.dev.pub \
+        --url https://composer.github.io/snapshots.pub; \
+    curl \
+        --silent \
+        --fail \
+        --location \
+        --retry 3 \
+        --output /tmp/keys.tags.pub \
+        --url https://composer.github.io/releases.pub
+
+RUN composer --ansi --version --no-interaction; \
+    composer diagnose --ansi
