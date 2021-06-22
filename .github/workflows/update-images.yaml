@@ -29,11 +29,11 @@ jobs:
                     USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
 
                     if [[ $CHANGED_FILES == *"php-8-laravel-dev/Dockerfile"* ]]; then
-                        docker build --pull --no-cache --tag "$USERNAME/php-8-laravel-dev:latest" "php-8-laravel-dev"
+                        docker build --progress plain --pull --no-cache --tag "$USERNAME/php-8-laravel-dev:latest" "php-8-laravel-dev"
                         docker push "$USERNAME/php-8-laravel-dev:latest"
                     fi
 
                     if [[ $CHANGED_FILES == *"php-74-laravel-dev/Dockerfile"* ]]; then
-                        docker build --pull --no-cache --tag "$USERNAME/php-74-laravel-dev:latest" "php-74-laravel-dev"
+                        docker build --progress plain --pull --no-cache --tag "$USERNAME/php-74-laravel-dev:latest" "php-74-laravel-dev"
                         docker push "$USERNAME/php-74-laravel-dev:latest"
                     fi
