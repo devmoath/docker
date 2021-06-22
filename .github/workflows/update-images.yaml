@@ -3,13 +3,15 @@ name: Update Images
 on:
     push:
         paths:
-            - 'php-8-laravel-dev/Dockerfile'
-            - 'php-74-laravel-dev/Dockerfile'
+            - .github/workflows/update-images.yaml
+            - '**/Dockerfile'
 
 jobs:
     build_and_push:
         name: build and push
         runs-on: ubuntu-20.04
+        timeout-minutes: 10
+        if: github.ref == 'refs/heads/master'
         steps:
             -   uses: actions/checkout@v2
                 with:
@@ -24,13 +26,14 @@ jobs:
             -   name: Build images and Push it to Docker Hub
                 run: |
                     CHANGED_FILES="$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})"
+                    USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
 
                     if [[ $CHANGED_FILES == *"php-8-laravel-dev/Dockerfile"* ]]; then
-                        docker build --no-cache -t "devmoath/php-8-laravel-dev:latest" "php-8-laravel-dev"
-                        docker push "devmoath/php-8-laravel-dev:latest"
+                        docker build --pull --no-cache --tag "$USERNAME/php-8-laravel-dev:latest" "php-8-laravel-dev"
+                        docker push "$USERNAME/php-8-laravel-dev:latest"
                     fi
 
                     if [[ $CHANGED_FILES == *"php-74-laravel-dev/Dockerfile"* ]]; then
-                        docker build --no-cache -t "devmoath/php-74-laravel-dev:latest" "php-74-laravel-dev"
-                        docker push "devmoath/php-74-laravel-dev:latest"
+                        docker build --pull --no-cache --tag "$USERNAME/php-74-laravel-dev:latest" "php-74-laravel-dev"
+                        docker push "$USERNAME/php-74-laravel-dev:latest"
                     fi
