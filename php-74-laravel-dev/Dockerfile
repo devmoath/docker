@@ -1,11 +1,11 @@
 FROM php:7.4-fpm
 
-LABEL description="Docker image for laravel development with php 7.4-fpm."
-LABEL maintainer="moath.alhajrii@gmail.com"
+LABEL description="Docker image for laravel development with php 7.4-fpm." \
+      maintainer="moath.alhajrii@gmail.com"
 
-RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash -
-
-RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
+RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
+    apt-get update; \
+    apt-get install --yes --quiet --no-install-recommends \
         openssl \
         libxml2-dev \
         libpq-dev \
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
         nodejs \
         zip \
         unzip \
-        nano && \
+        vim; \
     docker-php-ext-install pcntl \
         bcmath \
         mysqli \
@@ -29,9 +29,10 @@ RUN apt-get update && apt-get install --yes --quiet --no-install-recommends \
         pgsql \
         zip \
         gd \
-        gmp && \
-    pecl install xdebug-3.0.4 && \
-    docker-php-ext-enable xdebug gd
+        gmp; \
+    pecl install xdebug-3.0.4; \
+    docker-php-ext-enable xdebug gd; \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2.1.3 /usr/bin/composer /usr/bin/composer
 
@@ -42,10 +43,10 @@ date.timezone=UTC\n\
 memory_limit=-1\n\
 " > $PHP_INI_DIR/php-cli.ini
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME /tmp
-ENV COMPOSER_VERSION 2.1.3
-ENV XDEBUG_MODE coverage
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_HOME=/tmp \
+    COMPOSER_VERSION=2.1.3 \
+    XDEBUG_MODE=coverage
 
 RUN curl \
         --silent \
@@ -60,7 +61,6 @@ RUN curl \
         --location \
         --retry 3 \
         --output /tmp/keys.tags.pub \
-        --url https://composer.github.io/releases.pub
-
-RUN composer --ansi --version --no-interaction; \
+        --url https://composer.github.io/releases.pub; \
+    composer --ansi --version --no-interaction; \
     composer diagnose --ansi
