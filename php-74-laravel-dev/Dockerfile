@@ -64,5 +64,3 @@ RUN curl \
         --url https://composer.github.io/releases.pub; \
     composer --ansi --version --no-interaction; \
     composer diagnose --ansi
-
-CMD ["bash"]
