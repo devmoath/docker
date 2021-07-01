@@ -19,7 +19,8 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
         nodejs \
         zip \
         unzip \
-        vim; \
+        vim \
+        libicu-dev; \
     docker-php-ext-install pcntl \
         bcmath \
         mysqli \
@@ -29,7 +30,8 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
         pgsql \
         zip \
         gd \
-        gmp; \
+        gmp \
+        intl; \
     pecl install xdebug-3.0.4; \
     docker-php-ext-enable xdebug gd; \
     rm -rf /var/lib/apt/lists/*
