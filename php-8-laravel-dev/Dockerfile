@@ -20,6 +20,8 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
         zip \
         unzip \
         vim \
+        nano \
+        wget \
         libicu-dev; \
     docker-php-ext-install pcntl \
         bcmath \
