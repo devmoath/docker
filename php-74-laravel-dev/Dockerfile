@@ -38,7 +38,7 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
     docker-php-ext-enable xdebug gd; \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:2.1.6 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.8 /usr/bin/composer /usr/bin/composer
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
@@ -49,7 +49,7 @@ memory_limit=-1\n\
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
-    COMPOSER_VERSION=2.1.6 \
+    COMPOSER_VERSION=2.1.8 \
     XDEBUG_MODE=coverage
 
 RUN curl \
