@@ -1,6 +1,6 @@
-FROM php:8-fpm
+FROM php:8.0-fpm
 
-LABEL description="Docker image for laravel development with php 8-fpm." \
+LABEL description="Docker image for laravel development with php 8.0-fpm." \
       maintainer="moath.alhajrii@gmail.com"
 
 RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
@@ -38,7 +38,7 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
     docker-php-ext-enable xdebug gd; \
     rm -rfv /var/lib/apt/lists/*
 
-COPY --from=composer:2.1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
@@ -49,7 +49,7 @@ memory_limit=-1\n\
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
-    COMPOSER_VERSION=2.1.9 \
+    COMPOSER_VERSION=2.2 \
     XDEBUG_MODE=coverage
 
 RUN curl \

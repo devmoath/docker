@@ -28,6 +28,11 @@ jobs:
                     CHANGED_FILES="$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})"
                     USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
 
+                    if [[ $CHANGED_FILES == *"php-81-laravel-dev/Dockerfile"* ]]; then
+                        docker build --progress plain --pull --no-cache --tag "$USERNAME/php-81-laravel-dev:latest" "php-81-laravel-dev"
+                        docker push "$USERNAME/php-81-laravel-dev:latest"
+                    fi
+
                     if [[ $CHANGED_FILES == *"php-8-laravel-dev/Dockerfile"* ]]; then
                         docker build --progress plain --pull --no-cache --tag "$USERNAME/php-8-laravel-dev:latest" "php-8-laravel-dev"
                         docker push "$USERNAME/php-8-laravel-dev:latest"

@@ -1,6 +1,6 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
-LABEL description="Docker image for laravel development with php 7.4-fpm." \
+LABEL description="Docker image for laravel development with php 8.1-fpm." \
       maintainer="moath.alhajrii@gmail.com"
 
 RUN curl --silent --location https://deb.nodesource.com/setup_16.x | bash; \
