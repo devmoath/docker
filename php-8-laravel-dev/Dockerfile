@@ -11,4 +11,5 @@ RUN apk update; \
     chmod +x /usr/local/bin/install-php-extensions; \
     install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug;\
     php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer; \
-    rm -rfv /tmp/*
+    rm -rfv /tmp/*; \
+    chmod -R 777 /root
