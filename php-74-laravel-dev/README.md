@@ -1,13 +1,13 @@
-# PHP 7.4 Laravel Dev
+# php-74-laravel-dev
 
 ![PHP version](https://img.shields.io/badge/PHP-7.4.27-blue?style=for-the-badge)
 ![Composer version](https://img.shields.io/badge/COMPOSER-2.2.4-blue?style=for-the-badge)
 ![xDebug version](https://img.shields.io/badge/XDEBUG-3.1.2-blue?style=for-the-badge)
-![Node version](https://img.shields.io/badge/node-16.13.1-blue?style=for-the-badge)
+![Node version](https://img.shields.io/badge/node-v16.13.2-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-8.1.3-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-1.22.17-blue?style=for-the-badge)
 
-Docker image for laravel development with php 7.4 based on alpine 3.15
+Docker image for laravel development with php 7.4.27 based on alpine 3.15.0
 
 ## PHP extensions
 
