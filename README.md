@@ -1,4 +1,4 @@
-# Docker Images [![Update Images](https://github.com/DevMoath/docker-images/actions/workflows/update-images.yaml/badge.svg?branch=master)](https://github.com/DevMoath/docker-images/actions/workflows/update-images.yaml)
+# Docker Images [![CI](https://img.shields.io/github/workflow/status/devmoath/docker-images/Build%20and%20Push%20Images%20to%20Docker%20Hub/master?label=CI&style=for-the-badge)](https://github.com/DevMoath/docker-images/actions/workflows/ci.yaml)
 
 My custom images for PHP and Laravel, maybe more in the future.
 
