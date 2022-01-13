@@ -21,9 +21,13 @@ jobs:
                     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             -   name: Build image
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker build --progress plain --pull --no-cache --tag "$DOCKERHUB_USERNAME/php-81-laravel-dev:latest" "php-81-laravel-dev"
 
             -   name: Push image to Docker Hub
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker push "$DOCKERHUB_USERNAME/php-81-laravel-dev:latest"
 
     build_and_push_php-8-laravel-dev_image:
@@ -41,9 +45,13 @@ jobs:
                     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             -   name: Build image
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker build --progress plain --pull --no-cache --tag "$DOCKERHUB_USERNAME/php-8-laravel-dev:latest" "php-8-laravel-dev"
 
             -   name: Push image to Docker Hub
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker push "$DOCKERHUB_USERNAME/php-8-laravel-dev:latest"
 
     build_and_push_php-74-laravel-dev_image:
@@ -61,7 +69,11 @@ jobs:
                     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             -   name: Build image
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker build --progress plain --pull --no-cache --tag "$DOCKERHUB_USERNAME/php-74-laravel-dev:latest" "php-74-laravel-dev"
 
             -   name: Push image to Docker Hub
+                env:
+                    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                 run: docker push "$DOCKERHUB_USERNAME/php-74-laravel-dev:latest"
