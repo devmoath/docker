@@ -38,14 +38,15 @@ dirs=(
 log_info "Avaliable images (${dirs[*]})"
 
 for dir in "${dirs[@]}"; do
-    image="devmoath/$dir:latest"
+    dockerhub_username='devmoath'
+    image="$dockerhub_username/$dir:latest"
     readme_file="$dir/README.md"
 
-    log_info "pulling $image image"
+    log_info "Building $image image"
 
-    docker pull "$image"
+    docker build --progress plain --pull --no-cache --tag "$image" "$dir"
 
-    log_info "collecting $image image info"
+    log_info "Collecting $image image info"
 
     OS_VERSION=$(docker run --rm "$image" cat /etc/alpine-release)
     PHP_VERSION=$(docker run --rm "$image" php -r 'echo phpversion();')
@@ -56,16 +57,16 @@ for dir in "${dirs[@]}"; do
     NPM_VERSION=$(docker run --rm "$image" npm -v)
     YARN_VERSION=$(docker run --rm "$image" yarn -v)
 
-    log_info "os version: $OS_VERSION"
-    log_info "php version: $PHP_VERSION"
+    log_info "OS version: $OS_VERSION"
+    log_info "PHP version: $PHP_VERSION"
     log_info "$(echo "$PHP_MODULES" | tr '\r\n' ' ' | sed 's/  */ /g')"
-    log_info "php xdebug version: $XDEBUG_VERSION"
-    log_info "composer version: $COMPOSER_VERSION"
-    log_info "node version: $NODE_VERSION"
-    log_info "npm version: $NPM_VERSION"
-    log_info "yarn version: $YARN_VERSION"
+    log_info "PHP xdebug version: $XDEBUG_VERSION"
+    log_info "Composer version: $COMPOSER_VERSION"
+    log_info "Node version: $NODE_VERSION"
+    log_info "NPM version: $NPM_VERSION"
+    log_info "Yarn version: $YARN_VERSION"
 
-    log_info "writing content for $readme_file"
+    log_info "Writing content for $readme_file"
 
     echo "# $dir
 
@@ -84,5 +85,5 @@ Docker image for laravel development with php $PHP_VERSION based on alpine $OS_V
 $PHP_MODULES
 \`\`\`" >"$readme_file"
 
-    log_success "finish writing content for $readme_file"
+    log_success "Finish writing content for $readme_file"
 done
