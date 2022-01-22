@@ -1,7 +1,7 @@
 # php-74-laravel-dev
 
 ![PHP version](https://img.shields.io/badge/PHP-7.4.27-blue?style=for-the-badge)
-![Composer version](https://img.shields.io/badge/COMPOSER-2.2.4-blue?style=for-the-badge)
+![Composer version](https://img.shields.io/badge/COMPOSER-2.2.5-blue?style=for-the-badge)
 ![xDebug version](https://img.shields.io/badge/XDEBUG-3.1.2-blue?style=for-the-badge)
 ![Node version](https://img.shields.io/badge/node-v16.13.2-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-8.1.3-blue?style=for-the-badge)
