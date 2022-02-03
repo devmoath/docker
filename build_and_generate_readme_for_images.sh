@@ -44,32 +44,51 @@ for dir in "${dirs[@]}"; do
 
     log_info "Building $image image"
 
-    docker build --progress plain --pull --no-cache --tag "$image" "$dir"
+    docker build --tag "$image" "$dir"
+
+    log_info "Running $image image"
+
+    CONTAINER_ID=$(docker run -d "$image")
+
+    log_info "container id: $CONTAINER_ID"
 
     log_info "Collecting $image image info"
 
-    OS_VERSION=$(docker run --rm "$image" cat /etc/alpine-release)
-    PHP_VERSION=$(docker run --rm "$image" php -r 'echo phpversion();')
-    PHP_MODULES=$(docker run --rm "$image" php -m)
-    XDEBUG_VERSION=$(docker run --rm "$image" php -r 'echo phpversion("xdebug");')
-    COMPOSER_VERSION=$(docker run --rm "$image" php -r 'echo explode(" ", exec("composer -V"))[2];')
-    NODE_VERSION=$(docker run --rm "$image" node -v)
-    NPM_VERSION=$(docker run --rm "$image" npm -v)
-    YARN_VERSION=$(docker run --rm "$image" yarn -v)
-
+    OS_VERSION=$(docker exec "$CONTAINER_ID" cat /etc/alpine-release)
     log_info "OS version: $OS_VERSION"
+
+    PHP_VERSION=$(docker exec "$CONTAINER_ID" php -r 'echo phpversion();')
     log_info "PHP version: $PHP_VERSION"
+
+    PHP_MODULES=$(docker exec "$CONTAINER_ID" php -m)
     log_info "$(echo "$PHP_MODULES" | tr '\r\n' ' ' | sed 's/  */ /g')"
+
+    XDEBUG_VERSION=$(docker exec "$CONTAINER_ID" php -r 'echo phpversion("xdebug");')
     log_info "PHP xdebug version: $XDEBUG_VERSION"
+
+    COMPOSER_VERSION=$(docker exec "$CONTAINER_ID" php -r 'echo explode(" ", exec("composer -V"))[2];')
     log_info "Composer version: $COMPOSER_VERSION"
+
+    NODE_VERSION=$(docker exec "$CONTAINER_ID" node -v | cut -c2-)
     log_info "Node version: $NODE_VERSION"
+
+    NPM_VERSION=$(docker exec "$CONTAINER_ID" npm -v)
     log_info "NPM version: $NPM_VERSION"
+
+    YARN_VERSION=$(docker exec "$CONTAINER_ID" yarn -v)
     log_info "Yarn version: $YARN_VERSION"
+
+    log_info "Stopping container id: $CONTAINER_ID"
+    docker stop "$CONTAINER_ID"
+
+    log_info "Removing container id: $CONTAINER_ID"
+    docker rm "$CONTAINER_ID"
 
     log_info "Writing content for $readme_file"
 
     echo "# $dir
 
+![Alpine Linux version](https://img.shields.io/badge/ALPINE%20LINUX-$OS_VERSION-blue?style=for-the-badge)
 ![PHP version](https://img.shields.io/badge/PHP-$PHP_VERSION-blue?style=for-the-badge)
 ![Composer version](https://img.shields.io/badge/COMPOSER-$COMPOSER_VERSION-blue?style=for-the-badge)
 ![xDebug version](https://img.shields.io/badge/XDEBUG-$XDEBUG_VERSION-blue?style=for-the-badge)
@@ -77,7 +96,7 @@ for dir in "${dirs[@]}"; do
 ![NPM version](https://img.shields.io/badge/npm-$NPM_VERSION-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-$YARN_VERSION-blue?style=for-the-badge)
 
-Docker image for laravel development with php $PHP_VERSION based on alpine $OS_VERSION
+Docker image for Laravel development with PHP $PHP_VERSION based on Alpine Linux $OS_VERSION
 
 ## PHP extensions
 
