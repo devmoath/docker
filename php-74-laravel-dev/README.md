@@ -2,9 +2,9 @@
 
 ![Alpine Linux version](https://img.shields.io/badge/ALPINE%20LINUX-3.15.0-blue?style=for-the-badge)
 ![PHP version](https://img.shields.io/badge/PHP-7.4.27-blue?style=for-the-badge)
-![Composer version](https://img.shields.io/badge/COMPOSER-2.2.5-blue?style=for-the-badge)
+![Composer version](https://img.shields.io/badge/COMPOSER-2.2.6-blue?style=for-the-badge)
 ![xDebug version](https://img.shields.io/badge/XDEBUG-3.1.3-blue?style=for-the-badge)
-![Node version](https://img.shields.io/badge/node-16.13.2-blue?style=for-the-badge)
+![Node version](https://img.shields.io/badge/node-16.14.0-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-8.1.3-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-1.22.17-blue?style=for-the-badge)
 
