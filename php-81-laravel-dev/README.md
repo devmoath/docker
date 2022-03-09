@@ -7,6 +7,8 @@
 ![Node version](https://img.shields.io/badge/node-16.14.0-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-8.1.3-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-1.22.17-blue?style=for-the-badge)
+![Supervisor version](https://img.shields.io/badge/supervisor-4.2.2-blue?style=for-the-badge)
+![Nginx version](https://img.shields.io/badge/nginx-1.20.2-blue?style=for-the-badge)
 
 Docker image for Laravel development with PHP 8.1.3 based on Alpine Linux 3.15.0
 
@@ -15,6 +17,7 @@ Docker image for Laravel development with PHP 8.1.3 based on Alpine Linux 3.15.0
 ```txt
 [PHP Modules]
 bcmath
+calendar
 Core
 ctype
 curl

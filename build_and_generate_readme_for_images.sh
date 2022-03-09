@@ -57,6 +57,13 @@ for dir in "${dirs[@]}"; do
     OS_VERSION=$(docker exec "$CONTAINER_ID" cat /etc/alpine-release)
     log_info "OS version: $OS_VERSION"
 
+    SUPERVISOR_VERSION=$(docker exec "$CONTAINER_ID" supervisord -v)
+    log_info "supervisor version: $SUPERVISOR_VERSION"
+
+    NGINX_VERSION=$(docker exec "$CONTAINER_ID" nginx -v 2>&1)
+    NGINX_VERSION=${NGINX_VERSION#*/}
+    log_info "nginx version: $NGINX_VERSION"
+
     PHP_VERSION=$(docker exec "$CONTAINER_ID" php -r 'echo phpversion();')
     log_info "PHP version: $PHP_VERSION"
 
@@ -95,6 +102,8 @@ for dir in "${dirs[@]}"; do
 ![Node version](https://img.shields.io/badge/node-$NODE_VERSION-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-$NPM_VERSION-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-$YARN_VERSION-blue?style=for-the-badge)
+![Supervisor version](https://img.shields.io/badge/supervisor-$SUPERVISOR_VERSION-blue?style=for-the-badge)
+![Nginx version](https://img.shields.io/badge/nginx-$NGINX_VERSION-blue?style=for-the-badge)
 
 Docker image for Laravel development with PHP $PHP_VERSION based on Alpine Linux $OS_VERSION
 
