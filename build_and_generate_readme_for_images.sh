@@ -57,6 +57,9 @@ for dir in "${dirs[@]}"; do
     OS_VERSION=$(docker exec "$CONTAINER_ID" cat /etc/alpine-release)
     log_info "OS version: $OS_VERSION"
 
+    GIT_VERSION=$(docker exec "$CONTAINER_ID" git --version | cut -c13-)
+    log_info "GIT version: $GIT_VERSION"
+
     SUPERVISOR_VERSION=$(docker exec "$CONTAINER_ID" supervisord -v)
     log_info "supervisor version: $SUPERVISOR_VERSION"
 
@@ -104,6 +107,7 @@ for dir in "${dirs[@]}"; do
 ![YARN version](https://img.shields.io/badge/yarn-$YARN_VERSION-blue?style=for-the-badge)
 ![Supervisor version](https://img.shields.io/badge/supervisor-$SUPERVISOR_VERSION-blue?style=for-the-badge)
 ![Nginx version](https://img.shields.io/badge/nginx-$NGINX_VERSION-blue?style=for-the-badge)
+![Git version](https://img.shields.io/badge/git-$GIT_VERSION-blue?style=for-the-badge)
 
 Docker image for Laravel development with PHP $PHP_VERSION based on Alpine Linux $OS_VERSION
 

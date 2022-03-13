@@ -9,6 +9,7 @@
 ![YARN version](https://img.shields.io/badge/yarn-1.22.17-blue?style=for-the-badge)
 ![Supervisor version](https://img.shields.io/badge/supervisor-4.2.2-blue?style=for-the-badge)
 ![Nginx version](https://img.shields.io/badge/nginx-1.20.2-blue?style=for-the-badge)
+![Git version](https://img.shields.io/badge/git-2.34.1-blue?style=for-the-badge)
 
 Docker image for Laravel development with PHP 7.4.28 based on Alpine Linux 3.15.0
 
