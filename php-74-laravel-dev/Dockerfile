@@ -9,7 +9,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN apk update; \
     apk add --no-cache nodejs npm yarn openssh nginx supervisor git; \
     chmod +x /usr/local/bin/install-php-extensions; \
-    install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip; \
+    install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip exif; \
     php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer; \
     rm -rfv /tmp/*; \
     chmod -R 777 /root/
