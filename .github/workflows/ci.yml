@@ -37,7 +37,7 @@ jobs:
             -   name: Update image READMEs
                 env:
                     DH_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-                    DH_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+                    DH_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
                 run: |
                     for image in */Dockerfile; do
                         image="$(basename $(dirname $image))"
