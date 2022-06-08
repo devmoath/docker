@@ -14,6 +14,6 @@ RUN apk update; \
 
 RUN install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip exif @composer
 
-RUN yarn global add npx
+RUN npm insatall --global pnpm npx
 
 RUN rm -rfv /tmp/*

@@ -32,6 +32,8 @@ NODE_VERSION=$(docker exec "$CONTAINER_ID" node -v | cut -c2-)
 
 NPM_VERSION=$(docker exec "$CONTAINER_ID" npm -v)
 
+PNPM_VERSION=$(docker exec "$CONTAINER_ID" pnpm -v)
+
 YARN_VERSION=$(docker exec "$CONTAINER_ID" yarn -v)
 
 docker rm --force --volumes "$CONTAINER_ID"
@@ -44,6 +46,7 @@ echo "# PHP 7.4 Laravel Development
 ![xDebug version](https://img.shields.io/badge/XDEBUG-$XDEBUG_VERSION-blue?style=for-the-badge)
 ![Node version](https://img.shields.io/badge/node-$NODE_VERSION-blue?style=for-the-badge)
 ![NPM version](https://img.shields.io/badge/npm-$NPM_VERSION-blue?style=for-the-badge)
+![PNPM version](https://img.shields.io/badge/pnpm-$PNPM_VERSION-blue?style=for-the-badge)
 ![YARN version](https://img.shields.io/badge/yarn-$YARN_VERSION-blue?style=for-the-badge)
 ![Supervisor version](https://img.shields.io/badge/supervisor-$SUPERVISOR_VERSION-blue?style=for-the-badge)
 ![Nginx version](https://img.shields.io/badge/nginx-$NGINX_VERSION-blue?style=for-the-badge)
