@@ -10,7 +10,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions; \
     chmod -R 777 /root
 
 RUN apk update; \
-    apk add --no-cache nodejs npm yarn openssh nginx supervisor git bash;
+    apk add --no-cache nodejs npm yarn openssh nginx supervisor git bash linux-headers;
 
 RUN IPE_GD_WITHOUTAVIF=1 install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip exif @composer
 
