@@ -10,10 +10,10 @@ RUN chmod +x /usr/local/bin/install-php-extensions; \
     chmod -R 777 /root
 
 RUN apk update; \
-    apk add --no-cache nodejs npm yarn openssh nginx supervisor git bash linux-headers;
+    apk add --no-cache nodejs npm openssh nginx supervisor git bash linux-headers;
 
-RUN install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip exif @composer
+RUN install-php-extensions bcmath pdo_mysql pdo_pgsql pcntl xdebug gd calendar zip exif redis @composer
 
-RUN npm install --global pnpm npx
+RUN npm install --global pnpm npx yarn
 
 RUN rm -rfv /tmp/*
